@@ -16,6 +16,10 @@ body {
   padding: 1rem;
 }
 
+.footer-link-text {
+  color: #ccc;
+}
+
 .header-area {
   background-color: #673ab7;
   color: #fff;
@@ -60,6 +64,61 @@ body {
   font-weight: bold;
 }
 
+.launches {
+  display: flex;
+  flex-direction: row;
+}
+
+.launches-api-area {
+  background-color: #ededed;
+  padding: 0 1rem 0.5rem 1rem;
+  border-radius: 0.5rem;
+  width: 100%;
+  margin: 1rem 3rem;
+}
+
+.launches-api-area > h3 {
+  text-align: center;
+}
+
+.launch-info {
+  padding-bottom: 0.75rem;
+  border-bottom: darkgray 1px solid;
+}
+
+.countdown {
+  padding-top: 0.75rem;
+  border-bottom: darkgray 1px solid;
+  padding-bottom: 0.75rem;
+}
+
+.location {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
+
+.left-arrow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0 1rem 1rem 0rem;
+  font-size: 2rem;
+  background-color: #ffc107;
+  margin: 8rem 0 8rem 0rem;
+  width: 5rem;
+}
+
+.right-arrow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 1rem 0rem 0rem 1rem;
+  font-size: 2rem;
+  background-color: #ffc107;
+  margin: 8rem 0 8rem 0rem;
+  width: 5rem;
+}
+
 .mission-statement {
   display: flex;
   justify-content: center;
@@ -67,6 +126,8 @@ body {
   align-items: center;
   font-size: 1.2rem;
   background-color: #d1c4e9;
+  text-align: center;
+  padding-bottom: 1rem;
 }
 
 .footer-area {
@@ -75,4 +136,5 @@ body {
   align-items: center;
   background-color: #673ab7;
   color: #ccc;
+  height: 5rem;
 }
