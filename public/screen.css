@@ -20,7 +20,7 @@ body {
   background-color: #673ab7;
   color: #fff;
   display: flex;
-  padding: 0.5rem;
+  padding: 0.3rem;
 }
 
 .header-title {
@@ -42,4 +42,37 @@ body {
   background-image: url(https://apod.nasa.gov/apod/image/1908/MoonSaturn_Patonai_960.jpg);
   background-position: center;
   background-repeat: no-repeat;
+  background-size: cover;
+  height: 20rem;
+}
+
+.image-area-footer {
+  display: flex;
+  justify-content: center;
+  font-size: 13px;
+}
+
+.launch-area-header {
+  display: flex;
+  background-color: #ffc107;
+  padding: 1rem 0 1rem 0.5rem;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.mission-statement {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1.2rem;
+  background-color: #d1c4e9;
+}
+
+.footer-area {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #673ab7;
+  color: #ccc;
 }
