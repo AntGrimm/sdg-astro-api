@@ -41,13 +41,31 @@ const getLaunchCard = async spaceXSite => {
   missions = spaceXData
 
   document.querySelector('.mission-name').textContent =
-    spaceXData[1].mission_name
+    missions[currentIndex].mission_name
   document.querySelector('.launch-info').textContent =
-    spaceXData[4].details || 'No description available yet.'
+    missions[currentIndex].details || 'No description available yet.'
   document.querySelector('.countdown').textContent =
-    spaceXData[1].launch_date_local
+    missions[currentIndex].launch_date_local
   document.querySelector('.location').textContent =
-    spaceXData[1].launch_site.site_name_long
+    missions[currentIndex].launch_site.site_name_long
+}
+
+const nextMissionButton = () => {
+  if (currentIndex > missions.length - 2) {
+    currentIndex = 0
+  } else {
+    currentIndex++
+  }
+  getLaunchCard()
+}
+
+const previousMissionButton = () => {
+  if (currentIndex > 0) {
+    currentIndex--
+  } else {
+    currentIndex = missions.length - 1
+  }
+  getLaunchCard()
 }
 
 const main = () => {
@@ -60,3 +78,9 @@ const main = () => {
 }
 
 document.addEventListener('DOMContentLoaded', main)
+document
+  .querySelector('.right-arrow')
+  .addEventListener('click', nextMissionButton)
+document
+  .querySelector('.left-arrow')
+  .addEventListener('click', previousMissionButton)
