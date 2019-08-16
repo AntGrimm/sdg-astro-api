@@ -1,10 +1,20 @@
+// Variables for array to track launch card
 let missions = []
 let currentIndex = 0
 
+// Nasa picture of the day API
 const createUrl = nasaSite => {
   const API_URL = 'https://sdg-astro-api.herokuapp.com/api/Nasa/apod'
   console.log(API_URL)
   return API_URL
+}
+
+// SpaceX launch info API
+const createSpaceXUrl = spaceXSite => {
+  const SPACE_API_URL =
+    'https://sdg-astro-api.herokuapp.com/api/SpaceX/launches/upcoming'
+  console.log(SPACE_API_URL)
+  return SPACE_API_URL
 }
 
 const getMainImage = async nasaSite => {
@@ -22,13 +32,6 @@ const getMainImage = async nasaSite => {
   console.log(mainImage)
 }
 
-const createSpaceXUrl = spaceXSite => {
-  const SPACE_API_URL =
-    'https://sdg-astro-api.herokuapp.com/api/SpaceX/launches/upcoming'
-  console.log(SPACE_API_URL)
-  return SPACE_API_URL
-}
-
 const getLaunchCard = async spaceXSite => {
   const response = await fetch(createSpaceXUrl(spaceXSite))
   const spaceXData = await response.json()
@@ -36,7 +39,7 @@ const getLaunchCard = async spaceXSite => {
   console.log(spaceXData)
 
   // missions is an empty array that will populate with Space X API
-  // The array will be 0 - 17, and the next button will have to read array.length - 2 array ++
+  // The array will be 0 - 17(.length), and the next button will have to read array.length - 2 array ++
   // The previous button will have to read array.length +1 array --
   missions = spaceXData
 
@@ -50,6 +53,7 @@ const getLaunchCard = async spaceXSite => {
     missions[currentIndex].launch_site.site_name_long
 }
 
+// Hit next button to see next launch info
 const nextMissionButton = () => {
   if (currentIndex > missions.length - 2) {
     currentIndex = 0
@@ -59,6 +63,7 @@ const nextMissionButton = () => {
   getLaunchCard()
 }
 
+// previous button to see previous launch info
 const previousMissionButton = () => {
   if (currentIndex > 0) {
     currentIndex--

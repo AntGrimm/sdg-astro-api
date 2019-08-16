@@ -16,26 +16,39 @@ body {
   padding: 1rem;
 }
 
+.link-text:hover {
+  background-color: #ffc107;
+  color: #212121;
+}
+
 .footer-link-text {
   color: #ccc;
 }
 
 .header-area {
-  background-color: #673ab7;
-  color: #fff;
   display: flex;
-  padding: 0.3rem;
+  justify-content: space-between;
+  background-color: #673ab7;
 }
 
 .header-title {
-  width: 50%;
+  display: flex;
+  align-items: center;
+  background-color: #673ab7;
+  color: #fff;
+  flex-basis: 50%;
+  padding: 0rem 0rem 0rem 0.5rem;
+  font-weight: normal;
 }
 
 .menu-area {
   display: flex;
   align-items: center;
-  width: 50%;
+  flex-basis: 50%;
   justify-content: flex-end;
+  background-color: #673ab7;
+  color: #fff;
+  padding: 0rem 1rem 0rem 0;
 }
 
 .image-area {
@@ -107,6 +120,10 @@ body {
   width: 5rem;
 }
 
+.left-arrow:active {
+  background-color: #673ab7;
+}
+
 .right-arrow {
   display: flex;
   justify-content: center;
@@ -116,6 +133,10 @@ body {
   background-color: #ffc107;
   margin: 8rem 0 8rem 0rem;
   width: 5rem;
+}
+
+.right-arrow:active {
+  background-color: #673ab7;
 }
 
 .mission-statement {
