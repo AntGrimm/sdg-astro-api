@@ -80,18 +80,18 @@ body {
   text-align: center;
 }
 
-.launch-info {
+.launch-info-area {
   padding-bottom: 0.75rem;
   border-bottom: darkgray 1px solid;
 }
 
-.countdown {
+.countdown-area {
   padding-top: 0.75rem;
   border-bottom: darkgray 1px solid;
   padding-bottom: 0.75rem;
 }
 
-.location {
+.location-area {
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
 }

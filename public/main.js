@@ -39,6 +39,15 @@ const getLaunchCard = async spaceXSite => {
   // The array will be 0 - 17, and the next button will have to read array.length - 2 array ++
   // The previous button will have to read array.length +1 array --
   missions = spaceXData
+
+  document.querySelector('.mission-name').textContent =
+    spaceXData[1].mission_name
+  document.querySelector('.launch-info').textContent =
+    spaceXData[4].details || 'No description available yet.'
+  document.querySelector('.countdown').textContent =
+    spaceXData[1].launch_date_local
+  document.querySelector('.location').textContent =
+    spaceXData[1].launch_site.site_name_long
 }
 
 const main = () => {
