@@ -17,6 +17,7 @@ const createSpaceXUrl = spaceXSite => {
   return SPACE_API_URL
 }
 
+// Nasa picture of day json fetch
 const getMainImage = async nasaSite => {
   const response = await fetch(createUrl(nasaSite))
   const nasaData = await response.json()
@@ -32,6 +33,7 @@ const getMainImage = async nasaSite => {
   console.log(mainImage)
 }
 
+// space X launch card info
 const getLaunchCard = async spaceXSite => {
   const response = await fetch(createSpaceXUrl(spaceXSite))
   const spaceXData = await response.json()
@@ -41,53 +43,59 @@ const getLaunchCard = async spaceXSite => {
   // missions is an empty array that will populate with Space X API
   // The array will be 0 - 17(.length), and the next button will have to read array.length - 2 array ++
   // The previous button will have to read array.length +1 array --
+  // Set array to json data
   missions = spaceXData
 
+  // apply API data to array index and display on launch card
   document.querySelector('.mission-name').textContent =
     missions[currentIndex].mission_name
   document.querySelector('.launch-info').textContent =
     missions[currentIndex].details || 'No description available yet.'
   document.querySelector('.location').textContent =
     missions[currentIndex].launch_site.site_name_long
-  // document.querySelector('.countdown').textContent =
-  //   missions[currentIndex].launch_date_utc
 
-  // Create countdown timer
-  // get todays date
-  const now = new Date()
-  // get launch date
-  const launchDate = new Date(missions[currentIndex].launch_date_utc)
-  // subtract todays date from launch date
-  const diff = launchDate.getTime() - now.getTime()
-  const secondsFromT1ToT2 = diff / 1e3
-  let totalSeconds = Math.abs(secondsFromT1ToT2)
-  if (secondsFromT1ToT2 < 0) {
-    document.querySelector('.countdown').textContent = 'Launched!'
-  } else {
-    const time = {
-      days: 0,
-      hours: 0,
-      minutes: 0,
-      seconds: 0
+  // Create countdown timer (not sure how to do this in a separate function from the json)
+  // set variable to start countdown timer with interval
+  const x = setInterval(function() {
+    // get todays date
+    const now = new Date()
+    // get launch date
+    const launchDate = new Date(missions[currentIndex].launch_date_utc)
+    // subtract todays date from launch date
+    const diff = launchDate.getTime() - now.getTime()
+    // convert to seconds
+    const secondsFromT1ToT2 = diff / 1e3
+    let totalSeconds = Math.abs(secondsFromT1ToT2)
+    if (secondsFromT1ToT2 < 0) {
+      clearInterval(x)
+      document.querySelector('.countdown').textContent = 'Launched!'
+    } else {
+      const time = {
+        days: 0,
+        hours: 0,
+        minutes: 0,
+        seconds: 0
+      }
+      // convert time seconds to be displayed on card
+      time.days = Math.floor(totalSeconds / (60 * 60 * 24))
+      totalSeconds = totalSeconds - time.days * 24 * 60 * 60
+      time.hours = Math.floor(totalSeconds / (60 * 60))
+      totalSeconds = totalSeconds - time.hours * 60 * 60
+      time.minutes = Math.floor(totalSeconds / 60)
+      totalSeconds = totalSeconds - time.minutes * 60
+      time.seconds = Math.floor(totalSeconds)
+      console.log(time)
+      document.querySelector('.countdown').textContent =
+        time.days +
+        ' days, ' +
+        time.hours +
+        ' hours, ' +
+        time.minutes +
+        ' minutes, ' +
+        time.seconds +
+        ' seconds'
     }
-    time.days = Math.floor(totalSeconds / (60 * 60 * 24))
-    totalSeconds = totalSeconds - time.days * 24 * 60 * 60
-    time.hours = Math.floor(totalSeconds / (60 * 60))
-    totalSeconds = totalSeconds - time.hours * 60 * 60
-    time.minutes = Math.floor(totalSeconds / 60)
-    totalSeconds = totalSeconds - time.minutes * 60
-    time.seconds = Math.floor(totalSeconds)
-    console.log(time)
-    document.querySelector('.countdown').textContent =
-      time.days +
-      ' days, ' +
-      time.hours +
-      ' hours, ' +
-      time.minutes +
-      ' minutes, ' +
-      time.seconds +
-      ' seconds'
-  }
+  }, 1000)
 }
 
 // Hit next button to see next launch info
