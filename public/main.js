@@ -47,10 +47,48 @@ const getLaunchCard = async spaceXSite => {
     missions[currentIndex].mission_name
   document.querySelector('.launch-info').textContent =
     missions[currentIndex].details || 'No description available yet.'
-  document.querySelector('.countdown').textContent =
-    missions[currentIndex].launch_date_local
   document.querySelector('.location').textContent =
     missions[currentIndex].launch_site.site_name_long
+  // document.querySelector('.countdown').textContent =
+  //   missions[currentIndex].launch_date_utc
+
+  // Create countdown timer
+  // get todays date
+  const now = new Date()
+  // get launch date
+  const launchDate = new Date(missions[currentIndex].launch_date_utc)
+  // subtract todays date from launch date
+  const diff = launchDate.getTime() - now.getTime()
+  const secondsFromT1ToT2 = diff
+  const totalSeconds = Math.abs(secondsFromT1ToT2)
+  if (secondsFromT1ToT2 < 0) {
+    document.querySelector('.countdown').textContent = 'Launched!'
+  } else {
+    const time = {
+      days: 0,
+      hours: 0,
+      minutes: 0,
+      seconds: 0
+    }
+    //   time.days = Math.floor(totalSeconds / (60 * 60 * 24))
+    //   totalSeconds = totalSeconds - time.days * 24 * 60 * 60
+    //   time.hours = Math.floor(totalSeconds / (60 * 60))
+    //   totalSeconds = totalSeconds - time.hours * 60 * 60
+    //   time.minutes = Math.floor(totalSeconds / 60)
+    //   totalSeconds = totalSeconds - time.minutes * 60
+    //   time.seconds = Math.floor(totalSeconds)
+    //   _countdown.appendChild(
+    //     document.createTextNode(
+    //       ''
+    //         .concat(time.days, ' days, ')
+    //         .concat(time.hours, ' hours, ')
+    //         .concat(time.minutes, ' mins, ')
+    //         .concat(time.seconds, ' seconds')
+    //     )
+    //   )
+  }
+  // return _countdown
+  console.log(time)
 }
 
 // Hit next button to see next launch info
